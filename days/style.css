@@ -1,0 +1,27 @@
+body {
+    background-color: darkblue;
+    color: yellow;
+    font-size: 25px;
+}
+
+table {
+    width: 100%;
+    border: 2px solid red;
+}
+
+table td {
+    border: 2px solid rgba(192, 0, 0, 0.829);
+    text-align: center;
+}
+
+.col1 {
+    width: 10%;
+}
+
+.col3 {
+    width: 10%;
+}
+
+.col4 {
+    width: 25%;
+}
