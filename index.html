@@ -6,17 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>trx workout</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div>
-        <a href="days/A.html">روز A</a><br><br>
-        <a href="days/B.html">روز B</a><br><br>
-        <a href="days/C.html">روز C</a><br><br>
-        <a href="days/D.html">روز D</a><br><br>
-        <a href="days/E.html">روز E</a><br><br>
-    </div>
+---
+feature_name: Web NFC
+chrome_version: 89
+feature_id: 6261030015467520
+check_min_version: true
+---
+
+<h3>Background</h3>
+<p>
+Web NFC aims to provide sites the ability to read and write to NFC tags when
+they are brought in close proximity to the user’s device (usually 5-10 cm, 2-4
+inches). The current scope is limited to NDEF, a lightweight binary message
+format. Low-level I/O operations (e.g. ISO-DEP, NFC-A/B, NFC-F) and Host-based
+Card Emulation (HCE) are not supported within the current scope.
+</p>
+
+<button id="scanButton">Scan</button>
+<button id="writeButton">Write</button>
+<button id="makeReadOnlyButton">Make Read-Only</button>
+
+{% include output_helper.html initial_output_content=initial_output_content %}
+
+<script>
+log = ChromeSamples.log;
+
+if (!("NDEFReader" in window))
+  ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
+</script>
+
+{% include js_snippet.html filename='index.js' %}
 </body>
 
 </html>
