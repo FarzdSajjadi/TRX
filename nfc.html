@@ -1,27 +1,30 @@
-<!DOCTYPE html>
-<html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نوشتن با Web NFC</title>
-</head>
-<body>
-    <button onclick="writeNFC()">نوشتن کلمه "سلام"</button>
+---
+feature_name: Web NFC
+chrome_version: 89
+feature_id: 6261030015467520
+check_min_version: true
+---
 
-    <script>
-        async function writeNFC() {
-            const writer = new NDEFWriter();
-            const message = [
-                new NDEFRecord("text", new TextEncoder().encode("سلام"))
-            ];
+<h3>Background</h3>
+<p>
+Web NFC aims to provide sites the ability to read and write to NFC tags when
+they are brought in close proximity to the user’s device (usually 5-10 cm, 2-4
+inches). The current scope is limited to NDEF, a lightweight binary message
+format. Low-level I/O operations (e.g. ISO-DEP, NFC-A/B, NFC-F) and Host-based
+Card Emulation (HCE) are not supported within the current scope.
+</p>
 
-            try {
-                await writer.write(message);
-                alert("کلمه 'سلام' با موفقیت نوشته شد.");
-            } catch (error) {
-                console.error("خطا در نوشتن کلمه: ", error);
-            }
-        }
-    </script>
-</body>
-</html>
+<button id="scanButton">Scan</button>
+<button id="writeButton">Write</button>
+<button id="makeReadOnlyButton">Make Read-Only</button>
+
+{% include output_helper.html initial_output_content=initial_output_content %}
+
+<script>
+log = ChromeSamples.log;
+
+if (!("NDEFReader" in window))
+  ChromeSamples.setStatus("Web NFC is not available. Use Chrome on Android.");
+</script>
+
+{% include js_snippet.html filename='index.js' %}
