@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نوشتن با Web NFC</title>
+</head>
+<body>
+    <button onclick="writeNFC()">نوشتن کلمه "سلام"</button>
+
+    <script>
+        async function writeNFC() {
+            const writer = new NDEFWriter();
+            const message = [
+                new NDEFRecord("text", new TextEncoder().encode("سلام"))
+            ];
+
+            try {
+                await writer.write(message);
+                alert("کلمه 'سلام' با موفقیت نوشته شد.");
+            } catch (error) {
+                console.error("خطا در نوشتن کلمه: ", error);
+            }
+        }
+    </script>
+</body>
+</html>
